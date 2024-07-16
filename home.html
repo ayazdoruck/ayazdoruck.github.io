@@ -52,11 +52,9 @@
   </div>
 
   <script type="module">
-    // Firebase SDK's?n? içe aktar
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 
-    // Firebase yap?land?rma bilgileri
     const firebaseConfig = {
       apiKey: "AIzaSyA1v6oh1s4-Fvs-0oPhECqkqWJdkrI5ccI",
       authDomain: "ayazdoruck-36a35.firebaseapp.com",
@@ -67,30 +65,30 @@
       appId: "1:480509560791:web:c052946a3d1d92bdc36d92"
     };
 
-    // Firebase'i ba?lat
+    
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-    // Oturum durumu de?i?ti?inde çal??acak i?lev
+    
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        // Kullan?c? giri? yapm??sa
+        
         document.getElementById('user-email').textContent = user.email;
-        // ?ifre y?ld?z i?aretiyle gösterilebilir, ancak güvenlik endi?eleri göz önünde bulundurularak genellikle gösterilmez.
-        document.getElementById('user-password').textContent = '******'; // Buraya Firebase'den ?ifreyi almak do?ru de?ildir ve güvenlik için önerilmez
+         gösterilebilir, ancak güvenlik endi?eleri göz önünde bulundurularak genellikle gösterilmez.
+        document.getElementById('user-password').textContent = '******'; 
       } else {
-        // Kullan?c? oturumu kapat?rsa veya giri? yapmazsa
-        window.location.href = 'login'; // Kullan?c?y? giri? sayfas?na yönlendir
+        
+        window.location.href = 'login'; 
       }
     });
 
-    // Ç?k?? i?levi
+    
     window.logout = function() {
       signOut(auth).then(() => {
-        // Ç?k?? ba?ar?l? olduysa, kullan?c?y? giri? sayfas?na yönlendir
+        
         window.location.href = 'ayazdoruck.github.io';
       }).catch((error) => {
-        // Hata durumunda
+        
         console.error('Çıkıi yaparken bir hata oluştu:', error);
       });
     };
