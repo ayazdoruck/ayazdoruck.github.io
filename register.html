@@ -80,7 +80,7 @@
   </style>
 </head>
 <body>
-  <a href="index.html" class="back-button">Geri Dön</a>
+  <a href="ayazdoruck.github.io" class="back-button">Geri Dön</a>
   <div class="container">
     <h2>Kayıt Ol</h2>
     <input type="email" id="signup-email" placeholder="Mail">
@@ -120,7 +120,7 @@
             .then(() => {
               alert('Kullanıcı Kaydedildi ve e-posta doğrulama bağlantısı gönderildi: ' + user.email);
               signOut(auth); // Oturumu kapat
-              window.location.href = 'login.html';
+              window.location.href = 'login';
             });
         })
         .catch((error) => {
