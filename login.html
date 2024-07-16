@@ -89,11 +89,11 @@
   </div>
 
   <script type="module">
-    // Import the functions you need from the SDKs you need
+    
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
     import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 
-    // Your web app's Firebase configuration
+    
     const firebaseConfig = {
       apiKey: "AIzaSyA1v6oh1s4-Fvs-0oPhECqkqWJdkrI5ccI",
       authDomain: "ayazdoruck-36a35.firebaseapp.com",
@@ -104,11 +104,11 @@
       appId: "1:480509560791:web:c052946a3d1d92bdc36d92"
     };
 
-    // Initialize Firebase
+    
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-    // Kullan?c? Giri? Fonksiyonu
+    
     window.signIn = function() {
       const email = document.getElementById('login-email').value;
       const password = document.getElementById('login-password').value;
@@ -118,11 +118,11 @@
           const user = userCredential.user;
           if (user.emailVerified) {
             alert('Giriş başarılı: ' + user.email);
-            // Giri? ba?ar?l?ysa, kullan?c?y? yönlendirin
+            
             window.location.href = 'home';
           } else {
             alert('Lütfen e-posta adresinizi doğrulayın.');
-            auth.signOut(); // Oturumu kapat
+            auth.signOut(); 
           }
         })
         .catch((error) => {
