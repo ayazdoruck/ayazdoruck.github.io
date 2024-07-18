@@ -78,9 +78,17 @@
       background-color: #0056b3;
     }
 
+    .message {
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
     .error-message {
       color: red;
-      margin-bottom: 1rem;
+    }
+
+    .success-message {
+      color: green;
     }
   </style>
 </head>
@@ -88,7 +96,7 @@
   <a href="ayazdoruck.github.io" class="back-button">Geri Dön</a>
   <div class="container">
     <h2>Giriş Yap</h2>
-    <div id="error-message" class="error-message"></div>
+    <div id="message" class="message"></div>
     <input type="email" id="login-email" placeholder="Mail">
     <input type="password" id="login-password" placeholder="Şifre">
     <button onclick="signIn()">Giriş Yap</button>
@@ -97,7 +105,7 @@
   <script type="module">
 
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 
 
     const firebaseConfig = {
@@ -114,32 +122,41 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
-
     onAuthStateChanged(auth, (user) => {
+      const messageElement = document.getElementById('message');
       if (user && user.emailVerified) {
-        window.location.href = 'home';
+        messageElement.textContent = 'Giriş başarılı, yönlendiriliyorsunuz...';
+        messageElement.className = 'message success-message';
+        setTimeout(() => {
+          window.location.href = 'home';
+        }, 2000);
       }
     });
 
     window.signIn = function() {
       const email = document.getElementById('login-email').value;
       const password = document.getElementById('login-password').value;
-      const errorMessageElement = document.getElementById('error-message');
+      const messageElement = document.getElementById('message');
 
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
           if (user.emailVerified) {
-            window.location.href = 'home';
+            messageElement.textContent = 'Giriş başarılı: ' + user.email;
+            messageElement.className = 'message success-message';
+            setTimeout(() => {
+              window.location.href = 'home';
+            }, 2000);
           } else {
-            errorMessageElement.textContent = 'Lütfen e-posta adresinizi doğrulayın.';
+            messageElement.textContent = 'Lütfen e-posta adresinizi doğrulayın.';
+            messageElement.className = 'message error-message';
             auth.signOut();
           }
         })
         .catch((error) => {
           const errorMessage = error.message;
-          errorMessageElement.textContent = 'Hata: ' + errorMessage;
+          messageElement.textContent = 'Hata: ' + errorMessage;
+          messageElement.className = 'message error-message';
         });
     };
   </script>
