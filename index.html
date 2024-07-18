@@ -48,11 +48,11 @@
 
 
 <script type="module">
-// Import the functions you need from the SDKs you need
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js"; 
 
-// Your web app's Firebase configuration
+
 const firebaseConfig = {
   apiKey: "AIzaSyA1v6oh1s4-Fvs-0oPhECqkqWJdkrI5ccI",
   authDomain: "ayazdoruck-36a35.firebaseapp.com",
@@ -63,14 +63,14 @@ const firebaseConfig = {
   appId: "1:480509560791:web:c052946a3d1d92bdc36d92"
 }; 
 
-// Initialize Firebase
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app); 
 
-// Check user authentication state
+
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    // User is signed in, redirect to home page
+    
     window.location.href = 'home';
   }
 });
@@ -80,9 +80,9 @@ onAuthStateChanged(auth, (user) => {
 <body>
   <div class="container">
     <h1>AyazDoruck</h1>
-    <button onclick="window.location.href='login'">Giri? Yap</button>
+    <button onclick="window.location.href='login'">Giriş Yap</button>
     <p>Veya</p>
-    <button onclick="window.location.href='register'">Kay?t Ol</button>
+    <button onclick="window.location.href='register'">Kayıt Ol</button>
   </div>
 </body>
 </html>
