@@ -118,45 +118,67 @@
       appId: "1:480509560791:web:c052946a3d1d92bdc36d92"
     };
 
-
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
     onAuthStateChanged(auth, (user) => {
       const messageElement = document.getElementById('message');
       if (user && user.emailVerified) {
-        messageElement.textContent = 'Giriş başarılı, yönlendiriliyorsunuz...';
-        messageElement.className = 'message success-message';
+        displayMessage('Giriş başarılı, yönlendiriliyorsunuz...', 'success-message');
         setTimeout(() => {
           window.location.href = 'home';
         }, 2000);
       }
     });
 
+    function displayMessage(text, className) {
+      const messageElement = document.getElementById('message');
+      messageElement.textContent = text;
+      messageElement.className = 'message ' + className;
+      setTimeout(() => {
+        messageElement.textContent = '';
+      }, 3000);
+    }
+
     window.signIn = function() {
       const email = document.getElementById('login-email').value;
       const password = document.getElementById('login-password').value;
-      const messageElement = document.getElementById('message');
+
+      if (!email || !password) {
+        displayMessage('Mail ve şifre alanları boş olamaz.', 'error-message');
+        return;
+      }
 
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
           if (user.emailVerified) {
-            messageElement.textContent = 'Giriş başarılı: ' + user.email;
-            messageElement.className = 'message success-message';
+            displayMessage('Giriş başarılı: ' + user.email, 'success-message');
             setTimeout(() => {
               window.location.href = 'home';
             }, 2000);
           } else {
-            messageElement.textContent = 'Lütfen e-posta adresinizi doğrulayın.';
-            messageElement.className = 'message error-message';
+            displayMessage('Lütfen e-posta adresinizi doğrulayın.', 'error-message');
             auth.signOut();
           }
         })
         .catch((error) => {
-          const errorMessage = error.message;
-          messageElement.textContent = 'Hata: ' + errorMessage;
-          messageElement.className = 'message error-message';
+          let errorMessage = 'Hatalı mail veya şifre.';
+          switch (error.code) {
+            case 'auth/invalid-email':
+              errorMessage = 'Geçersiz e-posta adresi.';
+              break;
+            case 'auth/user-disabled':
+              errorMessage = 'Bu kullanıcı devre dışı bırakıldı.';
+              break;
+            case 'auth/user-not-found':
+            case 'auth/wrong-password':
+              errorMessage = 'Hatalı mail veya şifre.';
+              break;
+            default:
+              errorMessage = 'Bir hata oluştu: ' + error.message;
+          }
+          displayMessage(errorMessage, 'error-message');
         });
     };
   </script>
