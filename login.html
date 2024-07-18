@@ -26,9 +26,9 @@
       width: 100%;
       max-width: 400px;
       text-align: center;
+      position: relative;
     }
 
-    
     h2 {
       margin-bottom: 1.5rem;
       color: #333333;
@@ -79,35 +79,42 @@
       background-color: #0056b3;
     }
 
-    .message {
-      margin-bottom: 1rem;
+    .notification {
+      display: none;
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px;
+      border-radius: 5px;
+      z-index: 1000;
       font-weight: 600;
     }
 
-    .error-message {
-      color: red;
+    .notification.success {
+      background-color: #28a745;
+      color: white;
     }
 
-    .success-message {
-      color: green;
+    .notification.error {
+      background-color: #dc3545;
+      color: white;
     }
   </style>
 </head>
 <body>
-  <a href="ayazdoruck.github.io" class="back-button">Anasayfaya Dön</a>
+  <a href="ayazdoruck.github.io" class="back-button">Geri Dön</a>
   <div class="container">
     <h2>Giriş Yap</h2>
-    <div id="message" class="message"></div>
     <input type="email" id="login-email" placeholder="Mail">
     <input type="password" id="login-password" placeholder="Şifre">
     <button onclick="signIn()">Giriş Yap</button>
+    <div id="notification" class="notification"></div>
   </div>
 
   <script type="module">
-
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
     import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
-
 
     const firebaseConfig = {
       apiKey: "AIzaSyA1v6oh1s4-Fvs-0oPhECqkqWJdkrI5ccI",
@@ -123,21 +130,18 @@
     const auth = getAuth(app);
 
     onAuthStateChanged(auth, (user) => {
-      const messageElement = document.getElementById('message');
       if (user && user.emailVerified) {
-        displayMessage('Giriş başarılı, yönlendiriliyorsunuz...', 'success-message');
-        setTimeout(() => {
-          window.location.href = 'home';
-        }, 2000);
+        window.location.href = 'home';
       }
     });
 
-    function displayMessage(text, className) {
-      const messageElement = document.getElementById('message');
-      messageElement.textContent = text;
-      messageElement.className = 'message ' + className;
+    function showNotification(message, type) {
+      const notification = document.getElementById('notification');
+      notification.textContent = message;
+      notification.className = `notification ${type}`;
+      notification.style.display = 'block';
       setTimeout(() => {
-        messageElement.textContent = '';
+        notification.style.display = 'none';
       }, 3000);
     }
 
@@ -146,7 +150,7 @@
       const password = document.getElementById('login-password').value;
 
       if (!email || !password) {
-        displayMessage('Mail ve şifre alanları boş bırakılamaz.', 'error-message');
+        showNotification('Mail ve şifre boş bırakılamaz.', 'error');
         return;
       }
 
@@ -154,32 +158,34 @@
         .then((userCredential) => {
           const user = userCredential.user;
           if (user.emailVerified) {
-            displayMessage('Giriş başarılı: ' + user.email, 'success-message');
+            showNotification('Giriş başarılı.', 'success');
             setTimeout(() => {
               window.location.href = 'home';
-            }, 2000);
+            }, 1000);
           } else {
-            displayMessage('Lütfen e-posta adresinizi doğrulayın.', 'error-message');
+            showNotification('Lütfen e-posta adresinizi doğrulayın.', 'error');
             auth.signOut();
           }
         })
         .catch((error) => {
-          let errorMessage = 'Hatalı e-posta veya şifre.';
+          let errorMessage;
           switch (error.code) {
             case 'auth/invalid-email':
               errorMessage = 'Geçersiz e-posta adresi.';
               break;
             case 'auth/user-disabled':
-              errorMessage = 'Bu kullanıcı devre dışı bırakıldı.';
+              errorMessage = 'Bu kullanıcı devre dışı bırakılmış.';
               break;
             case 'auth/user-not-found':
+              errorMessage = 'Bu e-posta ile kayıtlı kullanıcı bulunamadı.';
+              break;
             case 'auth/wrong-password':
-              errorMessage = 'Hatalı mail veya şifre.';
+              errorMessage = 'Hatalı şifre.';
               break;
             default:
-              errorMessage = 'Bir hata oluştu: ' + error.message;
+              errorMessage = 'Bir hata oluştu. Lütfen tekrar deneyin.';
           }
-          displayMessage(errorMessage, 'error-message');
+          showNotification(errorMessage, 'error');
         });
     };
   </script>
