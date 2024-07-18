@@ -1,56 +1,39 @@
-# AyazDoruck Website
+# AyazDoruck
 
 <p align="center">
-  <img src="https://example.com/logo.png" alt="Logo" width="200"/>
+  <img src="https://example.com/logo.png" alt="AyazDoruck Logo" width="150"/>
 </p>
 
 <p align="center">
-  <a href="https://example.com/docs" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: bold; text-align: center; text-decoration: none; color: white; background-color: #007bff; border-radius: 5px; margin: 5px;">Dokümantasyonu Görüntüle</a>
-  <a href="https://github.com/kullanici_adi/proje_adi/archive/refs/heads/main.zip" style="display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: bold; text-align: center; text-decoration: none; color: white; background-color: #28a745; border-radius: 5px; margin: 5px;">Projeyi İndir</a>
+  <a href="https://ayazdoruck.com/docs" style="display: inline-block; padding: 8px 16px; font-size: 14px; color: white; background-color: #007bff; border-radius: 4px; text-decoration: none;">Dokümantasyonu Görüntüle</a>
+  <a href="https://github.com/ayazdoruck/archive/refs/heads/main.zip" style="display: inline-block; padding: 8px 16px; font-size: 14px; color: white; background-color: #28a745; border-radius: 4px; text-decoration: none;">Projeyi İndir</a>
 </p>
 
-## Proje Açıklaması
+## Açıklama
 
-Kısa bir proje tanımı. Projenin amacı, ana özellikleri ve sağladığı çözümler hakkında birkaç cümle. Bu bölümde projenizin temel işlevleri, hedefleri ve önemli noktaları hakkında bilgi verebilirsiniz.
+AyazDoruck, kullanıcı dostu bir arayüz sunan, modern ve yenilikçi bir web uygulamasıdır. Projenin amacı ve sağladığı çözümler hakkında kısa bir açıklama.
 
 ## Özellikler
 
-<table>
-  <tr>
-    <th>Özellik</th>
-    <th>Açıklama</th>
-  </tr>
-  <tr>
-    <td>Özellik 1</td>
-    <td>Açıklama 1</td>
-  </tr>
-  <tr>
-    <td>Özellik 2</td>
-    <td>Açıklama 2</td>
-  </tr>
-  <tr>
-    <td>Özellik 3</td>
-    <td>Açıklama 3</td>
-  </tr>
-</table>
+- **Özellik 1:** Açıklama 1
+- **Özellik 2:** Açıklama 2
+- **Özellik 3:** Açıklama 3
 
 ## Kurulum
-
-Projeyi yerel ortamınıza kurmak için aşağıdaki adımları izleyin:
 
 1. Depoyu klonlayın:
 
     ```sh
-    git clone https://github.com/kullanici_adi/proje_adi.git
+    git clone https://github.com/ayazdoruck/repo.git
     ```
 
-2. Proje dizinine gidin:
+2. Dizine gidin:
 
     ```sh
-    cd proje_adi
+    cd repo
     ```
 
-3. Gerekli bağımlılıkları yükleyin:
+3. Bağımlılıkları yükleyin:
 
     ```sh
     npm install
@@ -58,7 +41,7 @@ Projeyi yerel ortamınıza kurmak için aşağıdaki adımları izleyin:
 
 ## Kullanım
 
-Projeyi çalıştırmak için aşağıdaki komutu kullanın:
+Projeyi çalıştırmak için:
 
 ```sh
 npm start
