@@ -77,23 +77,29 @@
     .back-button:hover {
       background-color: #0056b3;
     }
+
+    .error-message {
+      color: red;
+      margin-bottom: 1rem;
+    }
   </style>
 </head>
 <body>
   <a href="ayazdoruck.github.io" class="back-button">Geri Dön</a>
   <div class="container">
     <h2>Giriş Yap</h2>
+    <div id="error-message" class="error-message"></div>
     <input type="email" id="login-email" placeholder="Mail">
     <input type="password" id="login-password" placeholder="Şifre">
     <button onclick="signIn()">Giriş Yap</button>
   </div>
 
   <script type="module">
-    
+
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
     import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 
-    
+
     const firebaseConfig = {
       apiKey: "AIzaSyA1v6oh1s4-Fvs-0oPhECqkqWJdkrI5ccI",
       authDomain: "ayazdoruck-36a35.firebaseapp.com",
@@ -104,38 +110,36 @@
       appId: "1:480509560791:web:c052946a3d1d92bdc36d92"
     };
 
-    
+
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
     import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 
-onAuthStateChanged(auth, (user) => {
-  if (user && user.emailVerified) {
-    
-    window.location.href = 'home';
-  }
-});
-    
+    onAuthStateChanged(auth, (user) => {
+      if (user && user.emailVerified) {
+        window.location.href = 'home';
+      }
+    });
+
     window.signIn = function() {
       const email = document.getElementById('login-email').value;
       const password = document.getElementById('login-password').value;
+      const errorMessageElement = document.getElementById('error-message');
 
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
           if (user.emailVerified) {
-            alert('Giriş başarılı: ' + user.email);
-            
             window.location.href = 'home';
           } else {
-            alert('Lütfen e-posta adresinizi doğrulayın.');
-            auth.signOut(); 
+            errorMessageElement.textContent = 'Lütfen e-posta adresinizi doğrulayın.';
+            auth.signOut();
           }
         })
         .catch((error) => {
           const errorMessage = error.message;
-          alert('Hata: ' + errorMessage);
+          errorMessageElement.textContent = 'Hata: ' + errorMessage;
         });
     };
   </script>
