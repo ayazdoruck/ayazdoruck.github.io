@@ -163,7 +163,7 @@
           }
         })
         .catch((error) => {
-          let errorMessage = 'Hatalı mail veya şifre.';
+          let errorMessage = 'Hatalı e-posta veya şifre.';
           switch (error.code) {
             case 'auth/invalid-email':
               errorMessage = 'Geçersiz e-posta adresi.';
