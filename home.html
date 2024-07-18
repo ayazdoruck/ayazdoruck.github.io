@@ -45,10 +45,10 @@
 </head>
 <body>
   <div class="container">
-    <h2>Hoş geldiniz</h2>
-    <p>Kullanıcı adı: <span id="user-email"></span></p>
-    <p>Şifre: <span id="user-password"></span></p>
-    <button onclick="logout()">Çıkış Yap</button>
+    <h2>Ho?geldiniz</h2>
+    <p>Kullan?c? ad?: <span id="user-email"></span></p>
+    <p>?ifre: <span id="user-password"></span></p>
+    <button onclick="logout()">Ç?k?? Yap</button>
   </div>
 
   <script type="module">
@@ -65,31 +65,23 @@
       appId: "1:480509560791:web:c052946a3d1d92bdc36d92"
     };
 
-    
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-    
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        
         document.getElementById('user-email').textContent = user.email;
-         gösterilebilir, ancak güvenlik endi?eleri göz önünde bulundurularak genellikle gösterilmez.
-        document.getElementById('user-password').textContent = '******'; 
+        document.getElementById('user-password').textContent = '******';
       } else {
-        
-        window.location.href = 'login'; 
+        window.location.href = 'login.html';
       }
     });
 
-    
     window.logout = function() {
       signOut(auth).then(() => {
-        
-        window.location.href = 'ayazdoruck.github.io';
+        window.location.href = 'ayazdoruck.github.io/index.html';
       }).catch((error) => {
-        
-        console.error('Çıkıi yaparken bir hata oluştu:', error);
+        console.error('Ç?k?? yaparken bir hata olu?tu:', error);
       });
     };
   </script>
