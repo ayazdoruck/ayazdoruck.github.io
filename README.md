@@ -13,35 +13,4 @@
 
 AyazDoruck, kullanıcı dostu bir arayüz sunan, modern ve yenilikçi bir web uygulamasıdır. Projenin amacı ve sağladığı çözümler hakkında kısa bir açıklama.
 
-## Özellikler
 
-- **Özellik 1:** Açıklama 1
-- **Özellik 2:** Açıklama 2
-- **Özellik 3:** Açıklama 3
-
-## Kurulum
-
-1. Depoyu klonlayın:
-
-    ```sh
-    git clone https://github.com/ayazdoruck/repo.git
-    ```
-
-2. Dizine gidin:
-
-    ```sh
-    cd repo
-    ```
-
-3. Bağımlılıkları yükleyin:
-
-    ```sh
-    npm install
-    ```
-
-## Kullanım
-
-Projeyi çalıştırmak için:
-
-```sh
-npm start
