@@ -45,10 +45,10 @@
 </head>
 <body>
   <div class="container">
-    <h2>Ho?geldiniz</h2>
-    <p>Kullan?c? ad?: <span id="user-email"></span></p>
-    <p>?ifre: <span id="user-password"></span></p>
-    <button onclick="logout()">Ç?k?? Yap</button>
+    <h2>Hoşgeldiniz</h2>
+    <p>Kullanıcı adınız: <span id="user-email"></span></p>
+    <p>Şifreniz: <span id="user-password"></span></p>
+    <button onclick="logout()">Çıkış Yap</button>
   </div>
 
   <script type="module">
@@ -73,15 +73,15 @@
         document.getElementById('user-email').textContent = user.email;
         document.getElementById('user-password').textContent = '******';
       } else {
-        window.location.href = 'login.html';
+        window.location.href = 'login';
       }
     });
 
     window.logout = function() {
       signOut(auth).then(() => {
-        window.location.href = 'ayazdoruck.github.io/index.html';
+        window.location.href = 'ayazdoruck.github.io';
       }).catch((error) => {
-        console.error('Ç?k?? yaparken bir hata olu?tu:', error);
+        console.error('Çıkış yaparken bir hata oluştu:', error);
       });
     };
   </script>
