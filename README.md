@@ -1,7 +1,7 @@
 # AyazDoruck
 
 <p align="center">
-  <img src="https://example.com/logo.png" alt="AyazDoruck Logo" width="150"/>
+  <img src="https://cdn.discordapp.com/attachments/1263597515593351201/1263597553983684638/0b9150ba39fa3e7d2badcaa38e5d5cc7.jpg?ex=669ad06d&is=66997eed&hm=b9e40ad83b246466e555997f26d1066b777bb67c72b98febeecc372cfd90f9ed&" alt="AyazDoruck Logo" width="150"/>
 </p>
 
 <p align="center">
