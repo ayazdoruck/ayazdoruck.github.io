@@ -11,6 +11,6 @@
 
 ## Açıklama
 
-AyazDoruck, kullanıcı dostu bir arayüz sunan, modern ve yenilikçi bir web uygulamasıdır. Projenin amacı ve sağladığı çözümler hakkında kısa bir açıklama.
+AyazDoruc sitesini kendimi geliştirmek, yeni şeyler öğrenmek ve farklı deneyimler kazanmak için kurdum.
 
 
