@@ -1,4 +1,4 @@
-# Proje Adı
+# AyazDoruck Website
 
 <p align="center">
   <img src="https://example.com/logo.png" alt="Logo" width="200"/>
