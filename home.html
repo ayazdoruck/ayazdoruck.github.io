@@ -62,6 +62,7 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyA1v6oh1s4-Fvs-0oPhECqkqWJdkrI5ccI",
@@ -75,13 +76,27 @@
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
+    const firestore = getFirestore(app);
 
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
       if (user) {
-        document.getElementById('user-email').textContent = user.email;
+        const userEmail = user.email;
+        document.getElementById('user-email').textContent = userEmail;
         document.getElementById('user-password').textContent = '******';
-        if (user.email === 'ayazdoruck@gmail.com') {
-          document.getElementById('admin-button').style.display = 'inline-block';
+
+        try {
+          const userDoc = await getDoc(doc(firestore, "users", user.uid));
+
+          if (userDoc.exists()) {
+            const userData = userDoc.data();
+            if (userData.isAdmin) {
+              document.getElementById('admin-button').style.display = 'inline-block';
+            }
+          } else {
+            console.log('Kullanıcı bilgileri Firestore\'da bulunamadı.');
+          }
+        } catch (error) {
+          console.error('Firestore\'dan kullanıcı bilgileri alınırken hata oluştu:', error);
         }
       } else {
         window.location.href = 'login';
