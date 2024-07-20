@@ -115,6 +115,7 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
     import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyA1v6oh1s4-Fvs-0oPhECqkqWJdkrI5ccI",
@@ -128,6 +129,7 @@
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
+    const firestore = getFirestore(app);
 
     onAuthStateChanged(auth, (user) => {
       if (user && user.emailVerified) {
@@ -157,14 +159,19 @@
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
-          sendEmailVerification(auth.currentUser)
-            .then(() => {
-              showNotification('Kullanıcı kaydedildi ve e-posta doğrulama bağlantısı gönderildi.', 'success');
-              signOut(auth);
-              setTimeout(() => {
-                window.location.href = 'login';
-              }, 1000);
-            });
+          return setDoc(doc(firestore, "users", user.uid), {
+            email: user.email,
+            uid: user.uid
+          }).then(() => {
+            sendEmailVerification(auth.currentUser)
+              .then(() => {
+                showNotification('Kullanıcı kaydedildi ve e-posta doğrulama bağlantısı gönderildi.', 'success');
+                signOut(auth);
+                setTimeout(() => {
+                  window.location.href = 'login';
+                }, 1000);
+              });
+          });
         })
         .catch((error) => {
           let errorMessage;
