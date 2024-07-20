@@ -41,6 +41,13 @@
     button:hover {
       background-color: #0056b3;
     }
+    .admin-button {
+      display: none;
+      background-color: #28a745;
+    }
+    .admin-button:hover {
+      background-color: #218838;
+    }
   </style>
 </head>
 <body>
@@ -49,6 +56,7 @@
     <p>Kullanıcı adınız: <span id="user-email"></span></p>
     <p>Şifreniz: <span id="user-password"></span></p>
     <button onclick="logout()">Çıkış Yap</button>
+    <button id="admin-button" class="admin-button" onclick="goToAdminPanel()">Admin Paneli</button>
   </div>
 
   <script type="module">
@@ -72,6 +80,9 @@
       if (user) {
         document.getElementById('user-email').textContent = user.email;
         document.getElementById('user-password').textContent = '******';
+        if (user.email === 'ayazdoruck@gmail.com') {
+          document.getElementById('admin-button').style.display = 'inline-block';
+        }
       } else {
         window.location.href = 'login';
       }
@@ -83,6 +94,10 @@
       }).catch((error) => {
         console.error('Çıkış yaparken bir hata oluştu:', error);
       });
+    };
+
+    window.goToAdminPanel = function() {
+      window.location.href = 'admin';
     };
   </script>
 </body>
