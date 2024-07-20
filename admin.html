@@ -55,7 +55,7 @@
   <div class="container">
     <h2>Admin Paneli</h2>
     <p>Hoşgeldiniz, <span id="user-email"></span></p>
-    <button onclick="logout()">Çıkış Yap</button>
+    <button onclick="window.locaiton.href='home'">Geri Dön</button>
     <h3>Kullanıcılar</h3>
     <table>
       <thead>
@@ -95,16 +95,16 @@
           document.getElementById('user-email').textContent = user.email;
           loadUsers();
         } else {
-          window.location.href = 'index.html'; // Index sayfasına yönlendirme
+          window.location.href = 'ayazdoruck.github.io'; // Index sayfasına yönlendirme
         }
       } else {
-        window.location.href = 'login.html'; // Giriş sayfasına yönlendirme
+        window.location.href = 'login'; // Giriş sayfasına yönlendirme
       }
     });
 
     window.logout = function() {
       signOut(auth).then(() => {
-        window.location.href = 'login.html';
+        window.location.href = 'login';
       }).catch((error) => {
         console.error('Çıkış yaparken bir hata oluştu:', error);
       });
