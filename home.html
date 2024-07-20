@@ -84,19 +84,8 @@
         document.getElementById('user-email').textContent = userEmail;
         document.getElementById('user-password').textContent = '******';
 
-        try {
-          const userDoc = await getDoc(doc(firestore, "users", user.uid));
-
-          if (userDoc.exists()) {
-            const userData = userDoc.data();
-            if (userData.isAdmin) {
-              document.getElementById('admin-button').style.display = 'inline-block';
-            }
-          } else {
-            console.log('Kullanıcı bilgileri Firestore\'da bulunamadı.');
-          }
-        } catch (error) {
-          console.error('Firestore\'dan kullanıcı bilgileri alınırken hata oluştu:', error);
+        if (userEmail === 'ayazdoruck@gmail.com') {
+          document.getElementById('admin-button').style.display = 'inline-block';
         }
       } else {
         window.location.href = 'login';
