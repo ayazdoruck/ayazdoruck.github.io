@@ -5,7 +5,86 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Örnek Sorular ve Çizelge</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Google Inter Font */
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    header {
+      background-color: #4CAF50;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    main {
+      padding: 1rem;
+    }
+
+    .lesson-list ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .lesson-list li {
+      flex: 1 1 calc(50% - 10px);
+      margin: 5px;
+      text-align: center;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .lesson-list a {
+      display: block;
+      text-decoration: none;
+      color: #4CAF50;
+      font-weight: 600;
+      padding: 10px;
+      transition: background-color 0.3s;
+    }
+
+    .lesson-list a:hover {
+      background-color: #4CAF50;
+      color: #fff;
+    }
+
+    .exam-schedule,
+    .lesson-schedule {
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    .exam-schedule img,
+    .lesson-schedule img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    @media (min-width: 768px) {
+      .lesson-list li {
+        flex: 1 1 calc(25% - 10px);
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
