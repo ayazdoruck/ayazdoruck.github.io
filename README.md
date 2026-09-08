@@ -1,15 +1,19 @@
 # ayazdoruck.github.io
 
-`ayazdoruck.github.io` adresine gelen ziyaretçileri kişisel siteme
-([ayazdoruck.site](https://ayazdoruck.site/)) yönlendiren tek sayfalık statik
-site. Yönlendirme sırasında kısa bir yükleniyor animasyonu gösterir.
+A single-page static site that redirects visitors from `ayazdoruck.github.io`
+to my personal site, [ayazdoruck.site](https://ayazdoruck.site/), showing a
+brief loading animation while it does.
 
-Bağımlılığı yoktur; `index.html` doğrudan GitHub Pages tarafından servis edilir.
+It has no dependencies — `index.html` is served directly by GitHub Pages.
 
-## Yerelde çalıştırma
+## Running locally
 
 ```bash
 python3 -m http.server 8000
 ```
 
-Ardından `http://localhost:8000` adresini aç.
+Then open `http://localhost:8000`.
+
+## License
+
+[MIT](LICENSE)
